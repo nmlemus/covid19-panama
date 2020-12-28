@@ -20,7 +20,7 @@ def set_sidebar(st):
     # Add a selectbox to the sidebar:
     objective = st.sidebar.radio(
         '',
-        ('Inicio', 'Documentacion', 'Calculo de Rt', 'Graficas Generales', 'About me'))
+        ('Inicio', 'Documentacion', 'Calculo de Rt', 'Graficas Generales', 'Sobre mi'))
     
     return objective
 
