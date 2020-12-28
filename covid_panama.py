@@ -18,7 +18,7 @@ from PIL import Image
 
 from utils import *
 
-image = Image.open('download.jpeg')
+image = Image.open('../images/download.jpeg')
 
 st.image(image, use_column_width=True)
 

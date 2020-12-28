@@ -34,7 +34,7 @@ def calculo_rt(st):
     
     @st.cache
     def load_data():
-        casos_panama = pd.read_csv('laprensa_casos_pruebas_time_series.csv')
+        casos_panama = pd.read_csv('../data/laprensa_casos_pruebas_time_series.csv')
         return casos_panama
 
     # Create a text element and let the reader know the data is loading.
@@ -298,7 +298,7 @@ def about_me(st):
     
     st.title('About me')
     
-    image = Image.open('noel_barcelona.jpg')
+    image = Image.open('../images/noel_barcelona.jpg')
 
     st.image(image, width=200)
     
