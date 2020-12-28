@@ -34,7 +34,7 @@ elif objective == 'Graficas Generales':
 
     fig = px.scatter(casos_panama, x="pruebas", y="positivos", color="month", labels='date', size='pctg')
     st.plotly_chart(fig)
-elif objective == 'About me':
+elif objective == 'Sobre mi':
     about_me(st)
 else:
     inicio(st)

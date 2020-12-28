@@ -296,7 +296,7 @@ def documentation(st):
     
 def about_me(st):
     
-    st.title('About me')
+    st.title('Sobre mi')
     
     image = Image.open('images/noel_barcelona.jpg')
 
