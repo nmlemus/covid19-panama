@@ -34,7 +34,7 @@ def calculo_rt(st):
     
     @st.cache
     def load_data():
-        casos_panama = pd.read_excel('laprensa_casos_pruebas_time_series.xlsx')
+        casos_panama = pd.read_csv('laprensa_casos_pruebas_time_series.csv')
         return casos_panama
 
     # Create a text element and let the reader know the data is loading.
