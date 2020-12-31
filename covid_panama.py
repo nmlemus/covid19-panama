@@ -44,6 +44,8 @@ elif objective == 'Documentacion':
     documentation(st)
 elif objective == 'Graficas Generales':
     other_charts(st, casos_panama)
+    letalidad_chart(st, casos_panama)
+    positivity_chart(st, casos_panama)
 elif objective == 'Sobre mi':
     about_me(st)
 else:

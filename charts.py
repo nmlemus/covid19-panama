@@ -29,3 +29,27 @@ def other_charts(st, casos_panama):
     st.markdown('Interesante destacar que el comportamiento entre los nuevos casos y el numero de pruebas realizadas es casi lineal. \
         Esto tiene implicaciones directas en los analisis que se pueden hacer de los resultados. Pareciera como que el covid está bastante \
             expandido por Panamá y en la medida que más pruebas se hacen más casos aparecen.')
+
+def letalidad_chart(st, casos_panama):
+
+    st.title('Letalidad')
+
+    casos_pty = casos_panama.copy()
+    casos_pty['letalidad'] = round(casos_pty.total_death/casos_pty.acumulated_cases*100, 1)
+
+    fig = px.line(casos_pty, x="date", y="letalidad")
+    st.plotly_chart(fig)
+
+    st.markdown('La letalidad del covid ha ido disminuyendo.')
+
+def positivity_chart(st, casos_panama):
+
+    st.title('Positivity Rate')
+
+    casos_pty = casos_panama.copy()
+    casos_pty['pctg'] = round(casos_pty.positivity_pctg*100, 1)
+
+    fig = px.line(casos_pty, x="date", y="pctg")
+    st.plotly_chart(fig)
+
+    # st.markdown('La letalidad del covid ha ido disminuyendo.')
