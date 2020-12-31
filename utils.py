@@ -24,25 +24,16 @@ def set_sidebar(st):
     
     return objective
 
-def inicio(st):
+def inicio(st, casos_panama):
     st.text('Aqui va el inicio, toda la muela introductoria')
+
+    st.subheader('Datos')
+    st.dataframe(casos_panama.style.highlight_max(axis=0))
     
     
-def calculo_rt(st):
+def calculo_rt(st, casos_panama):
     
     st.title('Covid19 Panama: Calculo de $R_t$')
-    
-    @st.cache
-    def load_data():
-        casos_panama = pd.read_csv('data/laprensa_casos_pruebas_time_series.csv')
-        return casos_panama
-
-    # Create a text element and let the reader know the data is loading.
-    data_load_state = st.text('Cargando datos...')
-    # Load 10,000 rows of data into the dataframe.
-    casos_panama = load_data()
-    # Notify the reader that the data was successfully loaded.
-    data_load_state.text('Datos cargados...!')
 
     st.subheader('Datos')
     st.dataframe(casos_panama.style.highlight_max(axis=0))
@@ -51,9 +42,9 @@ def calculo_rt(st):
 
     st.subheader('Casos por dia')
 
-    cases = casos_panama.sort_values('date')[['date', 'casos_acumulados']]
+    cases = casos_panama.sort_values('date')[['date', 'acumulated_cases']]
     cases['date'] = pd.to_datetime(cases.date, format='%Y-%m-%d')
-    cases['casos_acumulados'] = cases.casos_acumulados.astype(float)
+    cases['casos_acumulados'] = cases.acumulated_cases.astype(float)
     cases = cases.set_index('date')
     cases = pd.Series(cases['casos_acumulados'])
 

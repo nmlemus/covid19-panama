@@ -17,6 +17,7 @@ import plotly.express as px
 from PIL import Image
 
 from utils import *
+from charts import *
 
 image = Image.open('images/download.jpeg')
 
@@ -24,19 +25,28 @@ st.image(image, use_column_width=True)
 
 objective = set_sidebar(st)
 
+
+@st.cache
+def load_data():
+    casos_panama = pd.read_csv('data/covid_panama.csv')
+    return casos_panama
+
+# Create a text element and let the reader know the data is loading.
+data_load_state = st.text('Cargando datos...')
+# Load 10,000 rows of data into the dataframe.
+casos_panama = load_data()
+# Notify the reader that the data was successfully loaded.
+data_load_state.text('Datos cargados...!')
+
 if objective == 'Calculo de Rt':
-    calculo_rt(st)
+    calculo_rt(st, casos_panama)
 elif objective == 'Documentacion':
     documentation(st)
 elif objective == 'Graficas Generales':
-    casos_panama = pd.read_excel('/Users/nmlemus/covid19/panama/pruebas_vs_casos.xlsx')
-    casos_panama['pctg'] = casos_panama.pctg*100
-
-    fig = px.scatter(casos_panama, x="pruebas", y="positivos", color="month", labels='date', size='pctg')
-    st.plotly_chart(fig)
+    other_charts(st, casos_panama)
 elif objective == 'Sobre mi':
     about_me(st)
 else:
-    inicio(st)
+    inicio(st, casos_panama)
     
 
