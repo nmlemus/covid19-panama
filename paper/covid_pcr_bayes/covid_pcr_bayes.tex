@@ -1,0 +1,160 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tcolorbox}
+
+\author{Noel Moreno Lemus}
+\title{Covid19 PCR Incertainty}
+\begin{document}
+\title{Covid 19 PCR Uncertainty}
+
+\author{PhD Noel Moreno Lemus}
+
+\maketitle
+
+\section{Introduction}
+
+\section{Bayes Theorem}
+
+\begin{equation}
+P(A|B) = \frac{P(B|A)P(A)}{P(B)}
+\end{equation}
+
+Notación:
+
+\begin{itemize}
+\item[$Cov$:] persona con covid19
+\item[$+$:] resultado del test de PCR positivo
+\item[$CovFree$:] persona sin covid19
+\end{itemize}
+
+\begin{equation}
+P(Cov|+) = \frac{P(+|Cov)P(Cov)}{P(+)}
+\end{equation}
+
+donde:
+\begin{itemize}
+\item[$P(Cov|+)$:] representra la probabilidad de que tengas covid19 una vez que el test de PCR fue positivo
+\item[$P(+|Cov)$:] es la probabilidad de que el test resulte positivo para una persona que es portadora del covid19
+\item[$P(Cov)$:] probabilidad de que la persona tenga covid19
+\item[$P(+)$:] probabilidad de que el test de PCR resulte positivo
+\end{itemize}
+
+El test de PCR puede resultar positivo en dos casos diferentes:
+\begin{enumerate}
+\item la persona es portadora del virus y el test da positivo $P(+|Cov)P(Cov)$
+\item la persona no es portadora del virus y aún así el test da positivo, que es lo que se conoce como \textbf{falso positivo}. Esta segunda probabilidad podemos representarla como $P(+|CovFree)P(CovFree)$
+\end{enumerate}
+
+por lo tanto el termino del denominador de la ecuación 2, puede representarse como:
+
+\begin{equation}
+P(+) = P(+|Cov)P(Cov) + P(+|CovFree)P(CovFree)
+\end{equation}
+
+sustituyendo 3 en 2 tenemos:
+
+\begin{equation}
+P(Cov|+) = \frac{P(+|Cov)P(Cov)}{P(+|Cov)P(Cov) + P(+|CovFree)P(CovFree)}
+\end{equation}
+
+
+La probabilidad de que el test resulte positivo si una persona es portadora de covid19 $P(+|Cov)$ es lo que se conoce como \textbf{sensibilidad del test}. En el caso de los test de PCR está sensibilidad es muy alta, por lo que podemos asignarle un valor de más del 95\%, o lo que es lo mismo 0.95.
+
+La probabilidad de que el test resulte en un falso positivo es realmente el complemento de la especificidad. Como ya explicamos anteriormente, la especificidad es 
+
+Por tanto si la especificidad es, por ejemplo, 0.99 entonces $P(+|CovFree) = 0.01$. Este 0.01 significa que la probabilidad de que el test devuelva un falso positivo es solo del 1\%, sumamente baja.
+
+La ecuación 4 va quedando como:
+
+\begin{equation}
+P(Cov|+) = \frac{0.95*P(Cov)}{0.95*P(Cov) + 0.01*P(CovFree)}
+\end{equation}
+
+Solo resta sustituir en la ecuación los valores de $P(Cov)$ y $P(CovFree)$. De hecho como uno representa la probabilidad de tener covid19 y el otro de no tenerlo entonces:
+
+\begin{equation*}
+P(CovFree) = 1 - P(Cov)
+\end{equation*}
+
+\subsection{¿Cómo saber el valor de $P(Cov)$?}
+
+La probabilidad de que una persona tenga coronavirus o no está dada por un sinnúmero de variables. Por ejmplo:
+\begin{enumerate}
+\item la persona ha estado en contacto con uno o más casos positivos
+\item la persona presenta uno o varios sintomas de la enfermedad (mientras más graves los sintomas más probable es que esté contagiado)
+\item la persona ha frecuentado lugares donde se han registrado muchos casos positivos, o ha estado en algomeraciones de personas, como fiestas, filas en los mercados, etc
+\end{enumerate}
+
+En concreto no existe una forma exacta de evaluar esta probabilidad. Pero, como el objetivo del trabajo es didáctico, y lo que queremos ilustrar es como erróneamente se considera que la sensibilidad y la especificidad del test son los únicos factores que determinan la exactitud del resultado; podemos seleccionar algunos valores posibles de esta probabilidad y ver que pasa.
+
+\subsection{Escenarios}
+
+Veamos algunos escenarios hipotéticos.
+
+\subsubsection{Escenario I: persona sana y sin contactos ni síntomas}
+
+Si la persona no tiene síntomas y no ha estado en contacto con ningún caso reportado positivo anteriormente, lo unico que podemos decir es que la probabilidad de que la misma esté contagiada es igual a la prevalencia de la enfermedad en la población. 
+
+En el caso de Panamá, esta prevalencia esta cerca del 1.1\%, o sea 0.011. Recordando que:
+
+\begin{equation*}
+P(CovFree) = 1 - P(Cov)
+\end{equation*}
+
+Entonces:
+
+\begin{itemize}
+\item $P(Cov) = 0.011$
+\item $P(CovFree) = 0.989$
+\end{itemize}
+
+
+Por tanto tenemos:
+
+\begin{equation*}
+P(Cov|+) = \frac{0.95*0.011}{0.95*0.011 + 0.01*0.989} = \frac{0.01}{0.01 + 0.00989} = \frac{0.01}{0.01989} = 0.5
+\end{equation*}
+
+Sorprendente resultado, pero totalmente válido y con una explicación lógica que daremos más adelante. Esto básicamente significa que si tomamos una muestra significativa de la población donde la prevalencia de la enfermedad sea del 1.1\% la probabilidad de que si el test da positivo, la persona esté realmente contagiada de covid19, es de solamente el 50\%.
+
+\subsubsection{Escenario II: persona que ha estado en contacto con caso positivo y presenta síntomas}
+
+En este caso es más probable que la persona pueda estar contagiada, por lo tanto vamos a asignarle una $P(Cov) = 0.85$. O sea, existe una probabilidad de un 85\% de que la persona sea positiva. Evaluando nuevamente $P(CovFree) = 1 - P(Cov)$:
+
+Entonces:
+
+\begin{itemize}
+\item $P(Cov) = 0.85$
+\item $P(CovFree) = 0.15$
+\end{itemize}
+
+
+Por tanto tenemos:
+
+\begin{equation*}
+P(Cov|+) = \frac{0.95*0.85}{0.95*0.85 + 0.01*0.15} = \frac{0.807}{0.807 + 0.0015} = \frac{0.807}{0.8085} = 0.998
+\end{equation*}
+
+Pues si, como era de esperar en la medida en la que tenemos más certeza de que la persona puede ser portadora del covid19, nuestra fórmula de Bayes nos va dando valores mucho más cercanos a 1. En este caso podemos tener una certeza casi absoluta en el resultado del test.
+
+\subsubsection{Escenario III: persona asintomática que ha estado en un lugar donde ha habido contagios}
+
+En este caso vamos a decir que $P(Cov) = 0.5$, mitad y mitad, porque no sabemos si puede estar contagiada o no. Evaluando nuevamente $P(CovFree) = 1 - P(Cov)$:
+
+Entonces:
+
+\begin{itemize}
+\item $P(Cov) = 0.5$
+\item $P(CovFree) = 0.5$
+\end{itemize}
+
+Por tanto tenemos:
+
+\begin{equation*}
+P(Cov|+) = \frac{0.95*0.5}{0.95*0.5 + 0.01*0.5} = \frac{0.475}{0.475 + 0.005} = \frac{0.475}{0.48} = 0.98
+\end{equation*}
+
+\end{document}

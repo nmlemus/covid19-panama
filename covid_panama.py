@@ -19,7 +19,7 @@ from PIL import Image
 from utils import *
 from charts import *
 
-image = Image.open('images/download.jpeg')
+image = Image.open('images/banner.jpg')
 
 st.image(image, use_column_width=True)
 
