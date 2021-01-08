@@ -45,7 +45,7 @@ def inicio(st, casos_panama):
 
     st.dataframe(df_resumen)
 
-    st.markdown('[Descargar Datos Históricos](https://github.com/nmlemus/covid19-panama/blob/main/data/covid_panama.xlsx)')
+    st.markdown('[Descargar Datos Históricos](https://github.com/nmlemus/covid19-panama/blob/main/data/covid_panama_new.xlsx)')
 
     letalidad_chart(st, casos_panama)
     positivity_chart(st, casos_panama)
@@ -53,7 +53,7 @@ def inicio(st, casos_panama):
     st.subheader('Datos de los últimos 10 días')
     st.dataframe(df_last_days.style.highlight_max(axis=0))
 
-    st.markdown('[Descargar Datos Históricos](https://github.com/nmlemus/covid19-panama/blob/main/data/covid_panama.xlsx)')
+    st.markdown('[Descargar Datos Históricos](https://github.com/nmlemus/covid19-panama/blob/main/data/covid_panama_new.xlsx)')
     
     
 def documentation(st):
