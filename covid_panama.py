@@ -26,10 +26,10 @@ from calculo_rt import *
 
 objective = set_sidebar(st)
 
-
 @st.cache
 def load_data():
     casos_panama = pd.read_csv('data/covid_panama_new.csv')
+    casos_panama['month'] = pd.to_datetime(casos_panama['fecha'], format='%Y-%m-%d').dt.month_name()
     return casos_panama
 
 # Create a text element and let the reader know the data is loading.
@@ -43,12 +43,10 @@ if objective == 'Calculo de Rt':
     calculo_rt(st, casos_panama)
 elif objective == 'Documentacion':
     documentation(st)
-elif objective == 'Graficas Generales':
-    other_charts(st, casos_panama)
-    letalidad_chart(st, casos_panama)
-    positivity_chart(st, casos_panama)
 elif objective == 'Sobre mi':
     about_me(st)
+elif objective == 'Gráficas Dinámicas':
+    dynamic_charts(st, casos_panama)
 else:
     inicio(st, casos_panama)
     

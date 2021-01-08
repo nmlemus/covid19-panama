@@ -24,7 +24,7 @@ def set_sidebar(st):
     # Add a selectbox to the sidebar:
     objective = st.sidebar.radio(
         '',
-        ('Inicio', 'Documentacion', 'Calculo de Rt', 'Graficas Generales', 'Sobre mi'))
+        ('Inicio', 'Gráficas Dinámicas', 'Documentacion', 'Calculo de Rt', 'Sobre mi'))
     
     return objective
 
@@ -49,6 +49,14 @@ def inicio(st, casos_panama):
 
     letalidad_chart(st, casos_panama)
     positivity_chart(st, casos_panama)
+
+    any_chart(st, casos_panama, columns=['fecha', 'pruebas'], title='Pruebas Diarias')
+    any_chart(st, casos_panama, columns=['fecha', 'casos'], title='Casos por dia')
+    any_chart(st, casos_panama, columns=['fecha', 'recuperados'], title='Recuperados por dia')
+    # any_chart(st, casos_panama, columns=['fecha', 'pct_recuperados'], title='% de Recuperados por dia')
+
+    letalidad_recuperados_pctg(st, casos_panama)
+    recuperados_activos(st, casos_panama)
 
     st.subheader('Datos de los últimos 10 días')
     st.dataframe(df_last_days.style.highlight_max(axis=0))
@@ -90,6 +98,20 @@ def about_me(st):
 
     st.image(image, width=200)
     
-    st.markdown('My name is Noel Moreno Lemus. I graduated in Radiochemistry from the Higher Institute of Nuclear Science and Technology (ISCTN) in Havana, Cuba (2002). I obtained a master`s degree in Bioinformatics by InsTEC in Havana, Cuba (2007), and a Ph.D. in Computational Modeling at the National Laboratory of Scientific Computing of Rio de Janeiro, Brazil (2013-2018). I also possess the category of assistant professor. I was a professor of Mathematics (2002-2010), at the University of Information Science in Havana, Cuba. At the same time, I was the Head of the Bioinformatics Research Group at UCI, from 2004-2010.')
+    st.markdown('Mi nombre es Noel Moreno Lemus. Soy Ph.D. en Modelación Computacional por el [Laboratorio Nacional de Computación Científica de Brasil](http://www.lncc.br), \
+        Master en Bioinformática por el [Instituto Superior de Tecnologías y Ciencias Aplicadas (InSTEC)](https://www.instec.cu/index.php/en/), Cuba y Licenciado en Radioquímica por el propio InSTEC (antiguamente Instituto Superior de Ciencias y Tecnología Nucleares de Cuba) \
+            ')
 
-    st.markdown('I have experience in computer science, with emphasis on Data Science, Artificial Intelligence, mainly in the following areas: DataBase, Data Analysis, Data Mining, Machine Learning, Computational Modeling and Simulation, and Uncertainty Quantification. My current research and work interests focus on Big Data, Data Mining, Machine Learning, Computational Modeling and Simulation, Uncertainty Quantification, and Artificial Intelligence.')
+    st.markdown('# Puede encontrarme en:')
+
+    st.markdown('[LinkedIn](https://www.linkedin.com/in/nmlemus/)')
+
+    st.markdown('[Twitter](https://twitter.com/nmlemus)')
+
+    st.markdown('[GitHub](https://github.com/nmlemus/)')
+
+    st.markdown('O escribirme al e-mail: <nmlemus@gmail.com>')
+
+    st.markdown('# Versión más completa de mi curriculum (en Portugués):')
+
+    st.markdown('[Currículo Lattes](http://lattes.cnpq.br/0845486662407480)')
