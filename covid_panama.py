@@ -29,7 +29,7 @@ objective = set_sidebar(st)
 
 @st.cache
 def load_data():
-    casos_panama = pd.read_excel('data/covid_panama_new.xlsx')
+    casos_panama = pd.read_csv('data/covid_panama_new.csv')
     return casos_panama
 
 # Create a text element and let the reader know the data is loading.
