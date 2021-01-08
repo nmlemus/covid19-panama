@@ -18,25 +18,26 @@ from PIL import Image
 
 from utils import *
 from charts import *
+from calculo_rt import *
 
-image = Image.open('images/banner.jpg')
+# image = Image.open('images/banner.jpg')
 
-st.image(image, use_column_width=True)
+# st.image(image, use_column_width=True)
 
 objective = set_sidebar(st)
 
 
 @st.cache
 def load_data():
-    casos_panama = pd.read_csv('data/covid_panama.csv')
+    casos_panama = pd.read_excel('data/covid_panama_new.xlsx')
     return casos_panama
 
 # Create a text element and let the reader know the data is loading.
-data_load_state = st.text('Cargando datos...')
+# data_load_state = st.text('Cargando datos...')
 # Load 10,000 rows of data into the dataframe.
 casos_panama = load_data()
 # Notify the reader that the data was successfully loaded.
-data_load_state.text('Datos cargados...!')
+# data_load_state.text('Datos cargados...!')
 
 if objective == 'Calculo de Rt':
     calculo_rt(st, casos_panama)

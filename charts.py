@@ -32,24 +32,28 @@ def other_charts(st, casos_panama):
 
 def letalidad_chart(st, casos_panama):
 
-    st.title('Letalidad')
+    st.header('Letalidad')
 
     casos_pty = casos_panama.copy()
-    casos_pty['letalidad'] = round(casos_pty.total_death/casos_pty.acumulated_cases*100, 1)
+    casos_pty['letalidad'] = round(casos_pty['letalidad']*100, 1)
 
-    fig = px.line(casos_pty, x="date", y="letalidad")
-    st.plotly_chart(fig)
-
-    st.markdown('La letalidad del covid ha ido disminuyendo.')
-
-def positivity_chart(st, casos_panama):
-
-    st.title('Positivity Rate')
-
-    casos_pty = casos_panama.copy()
-    casos_pty['pctg'] = round(casos_pty.positivity_pctg*100, 1)
-
-    fig = px.line(casos_pty, x="date", y="pctg")
+    fig = px.line(casos_pty, x="fecha", y="letalidad")
     st.plotly_chart(fig)
 
     # st.markdown('La letalidad del covid ha ido disminuyendo.')
+
+def positivity_chart(st, casos_panama):
+
+    st.header('% de Positividad')
+
+    casos_pty = casos_panama.copy()
+    casos_pty['pctg'] = round(casos_pty.pct_positividad*100, 1)
+
+    fig = px.line(casos_pty, x="fecha", y="pctg")
+    st.plotly_chart(fig)
+
+    # st.markdown('La letalidad del covid ha ido disminuyendo.')
+
+def any_chart(st, casos_panama):
+
+    st.header()
