@@ -28,7 +28,7 @@ def set_sidebar(st):
     
     return objective
 
-def inicio(st, casos_panama):
+def inicio(st, casos_panama, resumen_grupo_edades):
 
     today = datetime.today().strftime('%d-%m-%Y')
     st.title('Covid-19 en Panamá: ' + str(today))
@@ -46,6 +46,13 @@ def inicio(st, casos_panama):
     st.dataframe(df_resumen)
 
     st.markdown('[Descargar Datos Históricos](https://github.com/nmlemus/covid19-panama/blob/main/data/covid_panama_new.xlsx)')
+
+    st.header('Resumen por Grupo de Edades')
+    st.table(resumen_grupo_edades)
+
+    with st.beta_expander("Origen de los Datos de Población"):
+        st.markdown('Los datos de población fueron extraidos del sitio web [Population Pyramids](https://www.populationpyramid.net/) \
+            y se corresponden con el año 2019')
 
     letalidad_chart(st, casos_panama)
     positivity_chart(st, casos_panama)

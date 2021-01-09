@@ -32,10 +32,19 @@ def load_data():
     casos_panama['month'] = pd.to_datetime(casos_panama['fecha'], format='%Y-%m-%d').dt.month_name()
     return casos_panama
 
+def load_resumen_grupo_edades():
+    resumen_grupo_edades = pd.read_csv('data/resumen_grupo_edades.csv')
+    resumen_grupo_edades['pct_poblacion'] = round(resumen_grupo_edades['pct_poblacion']*100, 1)
+    resumen_grupo_edades['pct_casos'] = round(resumen_grupo_edades['pct_casos']*100, 1)
+    resumen_grupo_edades['pct_fallecidos'] = round(resumen_grupo_edades['pct_fallecidos']*100, 1)
+    resumen_grupo_edades['letalidad_grupo_edad'] = round(resumen_grupo_edades['letalidad_grupo_edad']*100, 1)
+    return resumen_grupo_edades
+
 # Create a text element and let the reader know the data is loading.
 # data_load_state = st.text('Cargando datos...')
 # Load 10,000 rows of data into the dataframe.
 casos_panama = load_data()
+resumen_grupo_edades = load_resumen_grupo_edades()
 # Notify the reader that the data was successfully loaded.
 # data_load_state.text('Datos cargados...!')
 
@@ -48,6 +57,6 @@ elif objective == 'Sobre mi':
 elif objective == 'Gráficas Dinámicas':
     dynamic_charts(st, casos_panama)
 else:
-    inicio(st, casos_panama)
+    inicio(st, casos_panama, resumen_grupo_edades)
     
 
