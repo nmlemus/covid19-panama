@@ -50,6 +50,15 @@ def inicio(st, casos_panama, resumen_grupo_edades):
     st.header('Resumen por Grupo de Edades')
     st.table(resumen_grupo_edades)
 
+    st.error('Prestar atención al % de fallecidos en mayores de 60 años, este es del **74.5 %** actualmente. Además, es \
+        importante destacar que aunque la letalidad del covid19 está en **1.6 %**, en el caso de los mayores de 60 años la letalidad es \
+            mucho mayor.')
+
+    st.warning('De cada 100 personas mayores de 60 años que se enferma **9** mueren. En el caso de los mayores de 80 la relación es mayor, \
+        de cada 100 enfermos aproximadamente 18 mueren.')
+
+    st.info('NOTA: El **74.5 %** de los fallecidos en Panamá se concentran en **solo el 12 % de la población**.')
+
     with st.beta_expander("Origen de los Datos de Población"):
         st.markdown('Los datos de población fueron extraidos del sitio web [Population Pyramids](https://www.populationpyramid.net/) \
             y se corresponden con el año 2019')
