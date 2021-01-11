@@ -26,7 +26,7 @@ from calculo_rt import *
 
 objective = set_sidebar(st)
 
-@st.cache
+# @st.cache
 def load_data():
     casos_panama = pd.read_csv('data/covid_panama_new.csv')
     casos_panama['month'] = pd.to_datetime(casos_panama['fecha'], format='%Y-%m-%d').dt.month_name()
