@@ -49,6 +49,7 @@ def inicio(st, casos_panama, resumen_grupo_edades):
     st.markdown('[Descargar Datos Históricos](https://github.com/nmlemus/covid19-panama/blob/main/data/covid_panama_new.xlsx)')
 
     st.header('Resumen por Grupo de Edades')
+    st.info('El Resumen por Grupo de Edades se actualiza una vez por semana. **Última actualización: 09/01/2021**')
     st.table(resumen_grupo_edades)
 
     st.error('Prestar atención al % de fallecidos en mayores de 60 años, este es del **74.5 %** actualmente. Además, es \
