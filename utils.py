@@ -37,8 +37,9 @@ def inicio(st, casos_panama, resumen_grupo_edades):
     df_last_days = casos_panama.sort_values('fecha', ascending=False).head(10)
 
     df_resumen = pd.DataFrame({
-        'Variables': ['Casos totales', 'Fallecidos totales', 'Recuperados totales', 'Casos activos', 'Letalidad', '% de Recuperados'],
-        'Valores': [df_last_days.head(1)['casos_totales'].values[0], df_last_days.head(1)['fallecidos_totales'].values[0], \
+        'Variables': ['Pruebas Nuevas', 'Nuevos Casos', 'Positividad', 'Casos totales', 'Fallecidos totales', 'Recuperados totales', 'Casos activos', 'Letalidad', '% de Recuperados'],
+        'Valores': [df_last_days.head(1)['pruebas'].values[0], df_last_days.head(1)['casos'].values[0], df_last_days.head(1)['pct_positividad'].values[0]\
+            df_last_days.head(1)['casos_totales'].values[0], df_last_days.head(1)['fallecidos_totales'].values[0], \
             df_last_days.head(1)['recuperados_totales'].values[0], df_last_days.head(1)['casos_activos'].values[0], \
                 round(df_last_days.head(1)['letalidad'].values[0]*100, 2), round(df_last_days.head(1)['pct_recuperados'].values[0]*100, 1)]
     })
