@@ -107,7 +107,7 @@ def dynamic_charts(st, casos_panama):
 
     y = st.selectbox('Valor de Y', (casos_panama.columns), index=2)
 
-    color = st.selectbox('Valor para el Color de Cada punto', (casos_panama.columns), index=20)
+    color = st.selectbox('Valor para el Color de Cada punto', (casos_panama.columns), index=26)
 
     size = st.selectbox('Valor para el Tamaño de cada punto', (casos_panama.columns), index=11)
 
